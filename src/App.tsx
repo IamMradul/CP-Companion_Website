@@ -7,6 +7,7 @@ import { SetupGuide } from './components/SetupGuide';
 import { DownloadSection } from './components/DownloadSection';
 import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
+import { FollowPopup } from './components/FollowPopup';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <FaqSection />
       </main>
       <Footer />
+      <FollowPopup />
     </div>
   );
 }
