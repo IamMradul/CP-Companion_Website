@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 const VIDEO_URL =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260530_042513_df96a13b-6155-4f6e-8b93-c9dee66fba08.mp4';
 const SENSITIVITY = 0.8;
+const LERP_FACTOR = 0.04; // Decreased from 0.08 for even smoother, floatier interpolation
 
 export function BackgroundVideo() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -11,9 +12,14 @@ export function BackgroundVideo() {
   const isSeekingRef = useRef<boolean>(false);
 
   useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    let animationFrameId: number;
+    let smoothTime = targetTimeRef.current;
+
     const handleMouseMove = (e: MouseEvent) => {
-      const video = videoRef.current;
-      if (!video || !video.duration || isNaN(video.duration)) return;
+      if (!video.duration || isNaN(video.duration)) return;
 
       const currentX = e.clientX;
       if (prevXRef.current === null) {
@@ -30,28 +36,34 @@ export function BackgroundVideo() {
 
       newTarget = Math.max(0, Math.min(video.duration, newTarget));
       targetTimeRef.current = newTarget;
-
-      if (!isSeekingRef.current) {
-        isSeekingRef.current = true;
-        video.currentTime = newTarget;
-      }
     };
 
+    const updateVideo = () => {
+      if (video.duration && !isNaN(video.duration)) {
+        smoothTime += (targetTimeRef.current - smoothTime) * LERP_FACTOR;
+
+        if (
+          !isSeekingRef.current &&
+          Math.abs(smoothTime - video.currentTime) > 0.01
+        ) {
+          isSeekingRef.current = true;
+          video.currentTime = smoothTime;
+        }
+      }
+      animationFrameId = requestAnimationFrame(updateVideo);
+    };
+
+    updateVideo();
     window.addEventListener('mousemove', handleMouseMove);
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   const handleSeeked = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (Math.abs(video.currentTime - targetTimeRef.current) > 0.01) {
-      video.currentTime = targetTimeRef.current;
-    } else {
-      isSeekingRef.current = false;
-    }
+    isSeekingRef.current = false;
   };
 
   const handleLoadedMetadata = () => {

@@ -97,7 +97,7 @@ export function InteractiveDemo() {
   return (
     <section id="demo" className="py-24 relative z-10 bg-[#EAEAEA] border-t border-black/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black text-white text-xs font-semibold uppercase tracking-wider font-mono shadow-sm">
@@ -114,7 +114,7 @@ export function InteractiveDemo() {
 
         {/* Interactive Shell Container */}
         <div className="max-w-5xl mx-auto bg-white rounded-2xl overflow-hidden border border-black/15 shadow-xl">
-          
+
           {/* Shell Bar */}
           <div className="bg-[#F4F4F0] px-5 py-3 border-b border-black/10 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
@@ -131,33 +131,30 @@ export function InteractiveDemo() {
             <div className="flex items-center gap-1 bg-[#EAEAEA] p-1 rounded-xl border border-black/10">
               <button
                 onClick={() => setActiveTab('widget')}
-                className={`flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-lg transition-all ${
-                  activeTab === 'widget'
+                className={`flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-lg transition-all ${activeTab === 'widget'
                     ? 'bg-black text-white shadow-sm font-semibold'
                     : 'text-black/70 hover:text-black hover:bg-black/5'
-                }`}
+                  }`}
               >
                 <Layers className="w-3.5 h-3.5" />
                 <span>Rainmeter Widget</span>
               </button>
               <button
                 onClick={() => setActiveTab('list')}
-                className={`flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-lg transition-all ${
-                  activeTab === 'list'
+                className={`flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-lg transition-all ${activeTab === 'list'
                     ? 'bg-black text-white shadow-sm font-semibold'
                     : 'text-black/70 hover:text-black hover:bg-black/5'
-                }`}
+                  }`}
               >
                 <LayoutGrid className="w-3.5 h-3.5" />
                 <span>List View</span>
               </button>
               <button
                 onClick={() => setActiveTab('calendar')}
-                className={`flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-lg transition-all ${
-                  activeTab === 'calendar'
+                className={`flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-lg transition-all ${activeTab === 'calendar'
                     ? 'bg-black text-white shadow-sm font-semibold'
                     : 'text-black/70 hover:text-black hover:bg-black/5'
-                }`}
+                  }`}
               >
                 <Calendar className="w-3.5 h-3.5" />
                 <span>Calendar Grid</span>
@@ -231,7 +228,7 @@ export function InteractiveDemo() {
           {/* Tab 2: Main Application List View */}
           {activeTab === 'list' && (
             <div className="p-6 bg-white min-h-[420px]">
-              
+
               <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-5">
                 <div className="relative w-full sm:w-72">
                   <Search className="w-4 h-4 text-black/40 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -249,11 +246,10 @@ export function InteractiveDemo() {
                     <button
                       key={plat}
                       onClick={() => setSelectedPlatform(plat)}
-                      className={`text-[11px] font-medium px-2.5 py-1 rounded-lg transition-colors whitespace-nowrap ${
-                        selectedPlatform === plat
+                      className={`text-[11px] font-medium px-2.5 py-1 rounded-lg transition-colors whitespace-nowrap ${selectedPlatform === plat
                           ? 'bg-black text-white'
                           : 'bg-[#F4F4F0] text-black/70 hover:text-black hover:bg-black/5 border border-black/10'
-                      }`}
+                        }`}
                     >
                       {plat}
                     </button>
@@ -323,11 +319,10 @@ export function InteractiveDemo() {
                   return (
                     <div
                       key={dayNum}
-                      className={`min-h-[54px] p-2 rounded-xl border flex flex-col justify-between transition-colors ${
-                        isToday
+                      className={`min-h-[54px] p-2 rounded-xl border flex flex-col justify-between transition-colors ${isToday
                           ? 'bg-[#F0F0EB] border-black shadow-sm font-bold'
                           : 'bg-[#F9F9F7] border-black/10 hover:border-black/30'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between text-[10px] font-mono">
                         <span className={isToday ? 'font-bold text-black' : 'text-black/70'}>

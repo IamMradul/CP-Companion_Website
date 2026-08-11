@@ -74,8 +74,8 @@ export function Hero() {
         {/* 3. Action pill buttons */}
         <div
           className={`flex flex-wrap gap-2 items-center transition-all duration-400 ease-out ${showButtons
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-[8px] pointer-events-none'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-[8px] pointer-events-none'
             }`}
           style={{
             transition: 'opacity 0.4s ease, transform 0.4s ease',
@@ -133,7 +133,7 @@ export function Hero() {
             <span>
               Reach us:{' '}
               <span className="underline underline-offset-1">
-                {copied ? 'Copied to clipboard!' : 'support@cpcompanion.app'}
+                {copied ? 'Copied to clipboard!' : 'mradul0507@gmail.com'}
               </span>
             </span>
             {copied ? <Check className="w-3.5 h-3.5 shrink-0 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 shrink-0" />}

@@ -4,7 +4,7 @@ export function DownloadSection() {
   return (
     <section id="download" className="py-24 relative z-10 bg-[#EAEAEA] border-t border-black/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black text-white text-xs font-semibold uppercase tracking-wider font-mono shadow-sm">
@@ -21,7 +21,7 @@ export function DownloadSection() {
 
         {/* Options */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          
+
           {/* Main Card */}
           <div className="bg-black text-white p-8 rounded-3xl border border-black shadow-2xl flex flex-col justify-between space-y-6 relative md:col-span-2 group">
             <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-white text-black text-[11px] font-semibold tracking-wide uppercase font-mono shadow-md">
@@ -65,16 +65,15 @@ export function DownloadSection() {
 
             <div className="pt-4 border-t border-white/20 flex flex-col sm:flex-row items-center gap-3">
               <a
-                href="https://github.com"
-                target="_blank"
-                rel="noreferrer"
+                href="/cp-companion_3.1.1_x64_en-US.msi"
+                download="cp-companion_3.1.1_x64_en-US.msi"
                 className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white text-black hover:bg-slate-200 font-semibold text-sm shadow-xl transition-all"
               >
                 <Download className="w-4 h-4" />
                 <span>Download CP Companion v3.1.1</span>
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/IamMradul/CP-Companion/releases"
                 target="_blank"
                 rel="noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-medium text-xs border border-white/20 transition-colors"
@@ -109,7 +108,7 @@ export function DownloadSection() {
             </div>
 
             <a
-              href="https://github.com"
+              href="https://github.com/IamMradul/CP-Companion"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-black text-white hover:bg-black/80 font-semibold text-xs transition-colors"

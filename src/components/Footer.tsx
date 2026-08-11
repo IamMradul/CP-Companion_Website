@@ -1,6 +1,10 @@
 import { Heart, ExternalLink } from 'lucide-react';
+import { useState } from 'react';
+import { LegalModal } from './LegalModal';
 
 export function Footer() {
+  const [legalType, setLegalType] = useState<'terms' | 'privacy' | null>(null);
+
   return (
     <footer className="relative z-10 bg-[#EAEAEA] border-t border-black/10 pt-16 pb-12 text-black/80 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,7 +64,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://github.com" target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-black font-medium transition-colors">
+                <a href="https://github.com/IamMradul/CP-Companion/releases" target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-black font-medium transition-colors">
                   <span>GitHub Releases</span>
                   <ExternalLink className="w-3 h-3 opacity-60" />
                 </a>
@@ -78,8 +82,12 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-black/60 font-mono">
-          <div>
-            © 2026 CP Companion.
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6">
+            <span>© {new Date().getFullYear()} CP Companion.</span>
+            <div className="flex items-center gap-4">
+              <button onClick={() => setLegalType('terms')} className="hover:text-black transition-colors underline-offset-2 hover:underline cursor-pointer">Terms of Service</button>
+              <button onClick={() => setLegalType('privacy')} className="hover:text-black transition-colors underline-offset-2 hover:underline cursor-pointer">Privacy Policy</button>
+            </div>
           </div>
           <div className="flex items-center gap-1 text-black/80 font-bold">
             <span>Crafted with</span>
@@ -88,6 +96,12 @@ export function Footer() {
           </div>
         </div>
       </div>
+      
+      <LegalModal 
+        isOpen={!!legalType} 
+        onClose={() => setLegalType(null)} 
+        type={legalType} 
+      />
     </footer>
   );
 }

@@ -6,7 +6,7 @@
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-display: 'Plus Jakarta Sans', 'Inter', sans-serif;
   --font-mono: 'Fira Code', monospace;
-  
+
   --bg-beige: #EAEAEA;
   --bg-beige-light: #F4F4F0;
   --bg-beige-card: #FFFFFF;
@@ -39,9 +39,12 @@ body {
 }
 
 @keyframes blink {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0;
   }
