@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Calendar, LayoutGrid, Trophy, Layers, Play, ExternalLink, Search } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface Contest {
   id: string;
@@ -99,7 +100,13 @@ export function InteractiveDemo() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-8 sm:mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto space-y-4 mb-8 sm:mb-12"
+        >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black text-white text-xs font-semibold uppercase tracking-wider font-mono shadow-sm">
             <Play className="w-3.5 h-3.5" />
             <span>Interactive Live Simulation</span>
@@ -110,10 +117,16 @@ export function InteractiveDemo() {
           <p className="text-black/70 text-sm sm:text-base font-body">
             Toggle between the Rainmeter-style desktop widget, list view, and grid calendar.
           </p>
-        </div>
+        </motion.div>
 
         {/* Interactive Shell Container */}
-        <div className="max-w-5xl mx-auto bg-white rounded-2xl overflow-hidden border border-black/15 shadow-xl">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="max-w-5xl mx-auto bg-white rounded-2xl overflow-hidden border border-black/15 shadow-xl"
+        >
 
           {/* Shell Bar */}
           <div className="bg-[#F4F4F0] px-4 sm:px-5 py-3 border-b border-black/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
@@ -364,7 +377,7 @@ export function InteractiveDemo() {
             <span>Synchronized with SQLite DB</span>
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

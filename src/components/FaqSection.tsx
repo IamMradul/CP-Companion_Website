@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { HelpCircle, ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface FaqItem {
   question: string;
@@ -45,7 +46,13 @@ export function FaqSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto space-y-4 mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black text-white text-xs font-semibold uppercase tracking-wider font-mono shadow-sm">
             <HelpCircle className="w-3.5 h-3.5" />
             <span>Frequently Asked Questions</span>
@@ -56,15 +63,19 @@ export function FaqSection() {
           <p className="text-black/70 text-base font-body">
             Have questions about CP Companion features, Clist API, or desktop widget behavior? We've got answers.
           </p>
-        </div>
+        </motion.div>
 
         {/* List */}
         <div className="max-w-3xl mx-auto space-y-3">
           {FAQS.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <div
+              <motion.div
                 key={faq.question}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="retro-card-light rounded-2xl overflow-hidden"
               >
                 <button
@@ -84,7 +95,7 @@ export function FaqSection() {
                     {faq.answer}
                   </div>
                 )}
-              </div>
+              </motion.div>
             );
           })}
         </div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTypewriter } from '../hooks/useTypewriter';
 import { BackgroundVideo } from './BackgroundVideo';
 import { Download, Monitor, Cpu, Key, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const INTRO_TEXT =
   'Glad you stopped in. Good taste tends to find us. Ready to track every coding contest with CP Companion?';
@@ -13,13 +14,18 @@ export function Hero() {
     startDelay: 600,
   });
 
-  const [showButtons, setShowButtons] = useState(false);
+  const [version, setVersion] = useState("3.1.1");
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowButtons(true);
-    }, 400);
-    return () => clearTimeout(timer);
+    fetch("https://api.github.com/repos/IamMradul/CP-Companion/releases/latest")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.tag_name) {
+          const v = data.tag_name.replace(/^v/, '');
+          setVersion(v);
+        }
+      })
+      .catch((err) => console.error("Failed to fetch latest release:", err));
   }, []);
 
   return (
@@ -31,7 +37,12 @@ export function Hero() {
       <div className="max-w-2xl relative z-10 pointer-events-auto flex flex-col justify-between min-h-[calc(100vh-9rem)] md:min-h-0 md:block w-full">
         
         {/* Top Text Block (Mobile top / Laptop standard flow) */}
-        <div className="pt-2 md:pt-0 md:mb-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="pt-2 md:pt-0 md:mb-6"
+        >
           {/* 1. Blurred intro label */}
           <div
             className="select-none mb-3 sm:mb-4 text-black font-body"
@@ -63,28 +74,24 @@ export function Hero() {
               <span className="inline-block w-[2px] h-[1.1em] bg-black align-middle ml-[2px] animate-blink" />
             )}
           </p>
-        </div>
+        </motion.div>
 
         {/* Bottom Buttons & Release Badge Block (Mobile bottom / Laptop standard flow) */}
-        <div className="pt-12 md:pt-0">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="pt-12 md:pt-0"
+        >
           {/* 3. Action pill buttons */}
-          <div
-            className={`flex flex-wrap gap-2 items-center transition-all duration-400 ease-out ${
-              showButtons
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-[8px] pointer-events-none'
-            }`}
-            style={{
-              transition: 'opacity 0.4s ease, transform 0.4s ease',
-            }}
-          >
+          <div className="flex flex-wrap gap-2 items-center">
             {/* Primary Action Pill */}
             <a
               href="#download"
               className="w-full sm:w-auto inline-flex items-center justify-center bg-black text-white rounded-full text-xs sm:text-sm md:text-base px-5 py-2.5 sm:py-3 hover:bg-neutral-800 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.98] font-medium gap-2"
             >
               <Download className="w-4 h-4 shrink-0 text-white" />
-              <span>Download Windows MSI (v3.1.1)</span>
+              <span>Download Windows MSI (v{version})</span>
             </a>
 
             {/* Secondary Action Pills */}
@@ -123,10 +130,10 @@ export function Hero() {
 
           {/* Quick App Release Badge Pill */}
           <div className="mt-4 sm:mt-5 md:mt-6 pt-3 sm:pt-4 border-t border-black/10 flex flex-wrap items-center gap-2 sm:gap-3 text-xs text-black/80 font-mono">
-            <span className="bg-black text-white px-2.5 py-0.5 rounded-full font-bold">CP Companion v3.1.1</span>
-            <span className="text-[11px] sm:text-xs">Codeforces • LeetCode • AtCoder • CodeChef • GFG • HackerRank</span>
+            <span className="bg-black text-white px-2.5 py-0.5 rounded-full font-bold shadow-[2px_2px_0px_rgba(0,0,0,0.3)]">CP Companion v{version}</span>
+            <span className="text-[11px] sm:text-xs font-semibold">Codeforces • LeetCode • AtCoder • CodeChef • GFG • HackerRank</span>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

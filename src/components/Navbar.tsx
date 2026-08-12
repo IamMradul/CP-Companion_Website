@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Download } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const NAV_LINKS = [
   { name: 'Features', href: '#features' },
@@ -19,7 +20,12 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-40 w-full px-5 sm:px-8 py-4 sm:py-5 flex row justify-between items-center bg-transparent backdrop-blur-xs">
+      <motion.header 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="fixed top-0 left-0 right-0 z-40 w-full px-5 sm:px-8 py-4 sm:py-5 flex row justify-between items-center bg-transparent backdrop-blur-xs"
+      >
         {/* Logo (left) */}
         <a href="#" className="flex flex-row items-center gap-3 group">
           <span
@@ -75,7 +81,7 @@ export function Navbar() {
               }`}
           />
         </button>
-      </header>
+      </motion.header>
 
       {/* Mobile Overlay (z-index: 39) */}
       <div

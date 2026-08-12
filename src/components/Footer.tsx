@@ -1,6 +1,7 @@
 import { Heart, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 import { LegalModal } from './LegalModal';
+import { motion } from 'framer-motion';
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -21,7 +22,13 @@ export function Footer() {
   return (
     <footer className="relative z-10 bg-[#EAEAEA] border-t border-black/10 pt-16 pb-12 text-black/80 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-black/10">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-black/10"
+        >
 
           {/* Brand Info */}
           <div className="space-y-4">
@@ -154,7 +161,7 @@ export function Footer() {
             </div>
           </div>
 
-        </div>
+        </motion.div>
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-black/60 font-mono">

@@ -75,7 +75,7 @@ export function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
               <p>The application interacts with third-party APIs (e.g., Codeforces, LeetCode, Clist.by) directly from your IP address. Please review their respective privacy policies regarding API usage.</p>
               
               <h3 className="text-base font-bold text-black mt-4">4. Contact Us</h3>
-              <p>If you have any questions about this Privacy Policy, please contact us at support@cpcompanion.app.</p>
+              <p>If you have any questions about this Privacy Policy, please contact us on X (Twitter): <a href="https://x.com/MardulGupta" target="_blank" rel="noreferrer" className="text-black font-bold hover:underline">@MradulGupta</a> or <a href="https://x.com/SiddharthP29523" target="_blank" rel="noreferrer" className="text-black font-bold hover:underline">@SiddharthPaul</a>.</p>
             </>
           )}
         </div>

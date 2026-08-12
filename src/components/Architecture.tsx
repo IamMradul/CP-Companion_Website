@@ -1,4 +1,5 @@
 import { Cpu, Code2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function Architecture() {
   return (
@@ -6,7 +7,13 @@ export function Architecture() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto space-y-4 mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black text-white text-xs font-semibold uppercase tracking-wider font-mono shadow-sm">
             <Cpu className="w-3.5 h-3.5" />
             <span>High Performance Architecture</span>
@@ -17,10 +24,16 @@ export function Architecture() {
           <p className="text-black/70 text-base font-body">
             Designed to minimize memory consumption (~15MB installer) and guarantee 100% uptime without hitting Clist API rate limits.
           </p>
-        </div>
+        </motion.div>
 
         {/* Tech Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12"
+        >
           <div className="retro-card-light p-5 rounded-2xl space-y-2">
             <div className="text-xs font-mono uppercase text-black/60 font-bold">Backend</div>
             <div className="text-lg font-bold text-black font-heading">Rust & Tauri v2</div>
@@ -44,10 +57,16 @@ export function Architecture() {
             <div className="text-lg font-bold text-black font-heading">Clist.by API v4</div>
             <div className="text-xs text-black/70 font-body">Normalizes datetime & aggregates 50+ global CP platforms.</div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Flow Diagram */}
-        <div className="bg-white p-8 md:p-10 rounded-3xl border border-black/15 shadow-xl relative overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="bg-white p-8 md:p-10 rounded-3xl border border-black/15 shadow-xl relative overflow-hidden"
+        >
           <div className="text-xs font-mono uppercase tracking-widest text-black/60 mb-6 flex items-center justify-between border-b border-black/10 pb-4">
             <span className="flex items-center gap-2 font-bold text-black">
               <Code2 className="w-4 h-4 text-black" />
@@ -90,7 +109,7 @@ export function Architecture() {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

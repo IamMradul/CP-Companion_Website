@@ -1,4 +1,5 @@
 import { Globe, Clock, Database, Shield, Bell, Layers, CheckCircle2, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function Features() {
   const featureList = [
@@ -45,7 +46,13 @@ export function Features() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto space-y-4 mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black text-white text-xs font-semibold uppercase tracking-wider font-mono shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Complete Feature Suite</span>
@@ -57,15 +64,19 @@ export function Features() {
           <p className="text-black/70 text-base font-body">
             Everything you need to keep track of every contest round, division, and starter challenge with absolute reliability.
           </p>
-        </div>
+        </motion.div>
 
         {/* Feature Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featureList.map((f) => {
+          {featureList.map((f, i) => {
             const Icon = f.icon;
             return (
-              <div
+              <motion.div
                 key={f.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="retro-card-light p-6 rounded-2xl flex flex-col justify-between space-y-4 group relative overflow-hidden"
               >
                 <div className="space-y-4 relative z-10">
@@ -86,7 +97,7 @@ export function Features() {
                   <CheckCircle2 className="w-3.5 h-3.5 text-black" />
                   <span>Production Ready</span>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
