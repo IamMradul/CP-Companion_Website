@@ -1,12 +1,18 @@
 import { useState, useEffect } from 'react';
-import { Download, Monitor, ShieldCheck, Check, Apple, PlayCircle, ChevronDown } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Download, Monitor, ShieldCheck, Apple, PlayCircle, ChevronDown, DotIcon, X, Heart } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function DownloadSection() {
   const [version, setVersion] = useState("3.1.1");
-  const [downloadUrl, setDownloadUrl] = useState("/cp-companion_3.1.1_x64_en-US.msi");
+  const [downloadUrl, setDownloadUrl] = useState("/cp-companion_3.1.2_x64_en-US.msi");
+  const [macDownloadUrl, setMacDownloadUrl] = useState("/cp-companion_3.1.2_aarch64.dmg");
   const [fileSize, setFileSize] = useState("~14 MB");
   const [showMacFix, setShowMacFix] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+
+  const handleDownload = () => {
+    setShowThankYou(true);
+  };
 
   useEffect(() => {
     fetch("https://api.github.com/repos/IamMradul/CP-Companion/releases/latest")
@@ -21,6 +27,11 @@ export function DownloadSection() {
             setDownloadUrl(msiAsset.browser_download_url);
             setFileSize(`~${Math.round(msiAsset.size / (1024 * 1024))} MB`);
           }
+
+          const dmgAsset = data.assets?.find((a: any) => a.name.endsWith('.dmg'));
+          if (dmgAsset) {
+            setMacDownloadUrl(dmgAsset.browser_download_url);
+          }
         }
       })
       .catch((err) => console.error("Failed to fetch latest release:", err));
@@ -31,7 +42,7 @@ export function DownloadSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -51,10 +62,10 @@ export function DownloadSection() {
         </motion.div>
 
         {/* Options */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto items-stretch">
 
           {/* Main Card */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -82,19 +93,19 @@ export function DownloadSection() {
 
               <div className="grid grid-cols-2 gap-2 pt-2 text-xs font-mono text-white/80">
                 <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-white" />
-                  <span>Single `.msi` Installer ({fileSize})</span>
+                  <DotIcon className="w-3.5 h-3.5 text-white" />
+                  <span>Single Installer file ({fileSize})</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-white" />
+                  <DotIcon className="w-3.5 h-3.5 text-white" />
                   <span>Autostart Plugin Included</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-white" />
+                  <DotIcon className="w-3.5 h-3.5 text-white" />
                   <span>Rainmeter Desktop Widget</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-white" />
+                  <DotIcon className="w-3.5 h-3.5 text-white" />
                   <span>SQLite Offline Storage</span>
                 </div>
               </div>
@@ -104,6 +115,7 @@ export function DownloadSection() {
               <a
                 href={downloadUrl}
                 download={`cp-companion_${version}_x64_en-US.msi`}
+                onClick={handleDownload}
                 className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white text-black hover:bg-slate-200 font-semibold text-sm shadow-xl transition-all"
               >
                 <Download className="w-4 h-4" />
@@ -121,7 +133,7 @@ export function DownloadSection() {
           </motion.div>
 
           {/* macOS Card */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -145,8 +157,9 @@ export function DownloadSection() {
 
               <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
                 <a
-                  href={`/cp-companion_${version}_aarch64.dmg`}
+                  href={macDownloadUrl}
                   download={`cp-companion_${version}_aarch64.dmg`}
+                  onClick={handleDownload}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-black text-white hover:bg-black/80 font-bold text-sm transition-colors shadow-md"
                 >
                   <Download className="w-4 h-4" />
@@ -155,7 +168,7 @@ export function DownloadSection() {
 
                 {/* YouTube Tutorial Link */}
                 <a
-                  href="#"
+                  href="https://www.youtube.com/watch?v=iwOJhyQ6Uw8"
                   target="_blank"
                   rel="noreferrer"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white border border-black/20 text-black hover:bg-black/5 font-bold text-sm transition-colors shadow-sm"
@@ -222,6 +235,35 @@ export function DownloadSection() {
 
 
       </div>
+
+      {/* Thank You Popup */}
+      <AnimatePresence>
+        {showThankYou && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 pointer-events-none">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="pointer-events-auto w-full max-w-sm bg-white border-2 border-black rounded-3xl shadow-[8px_8px_0px_rgba(0,0,0,1)] p-8 flex flex-col items-center text-center relative"
+            >
+              <button
+                onClick={() => setShowThankYou(false)}
+                className="absolute top-4 right-4 text-black/50 hover:text-black transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 border border-red-200">
+                <Heart className="w-8 h-8 text-red-500 fill-red-500" />
+              </div>
+              <h3 className="text-2xl font-bold font-heading text-black mb-2">Thank You!</h3>
+              <p className="text-sm font-body text-black/70 leading-relaxed">
+                Your download should start automatically. We appreciate your support for CP Companion!
+              </p>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 }
