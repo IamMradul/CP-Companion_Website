@@ -1,6 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Download, Monitor, ShieldCheck, Apple, PlayCircle, ChevronDown, DotIcon, X, Heart } from 'lucide-react';
+import { createPortal } from 'react-dom';
+import { Download, Monitor, ShieldCheck, Apple, PlayCircle, ChevronDown, DotIcon, X, Heart, Lightbulb, Copy, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const FUN_FACTS = [
+  "Competitive programmers spend 80% of their time thinking and only 20% writing code. It's all about problem-solving!",
+  "The first programming competition took place in 1970 at Texas A&M University.",
+  "Top competitive programmers can type over 100 words per minute, but optimal code often requires fewer lines.",
+  "Tech giants like Google and Meta heavily recruit competitive programmers for their ability to write highly optimized code under pressure.",
+  "Many competitive programming problems are based on real-world scenarios, like routing network traffic or optimizing delivery routes.",
+  "Gennady Korotkevich, one of the most famous competitive programmers, has won top honors in almost every major coding competition worldwide."
+];
 
 export function DownloadSection() {
   const [version, setVersion] = useState("3.1.1");
@@ -9,6 +19,21 @@ export function DownloadSection() {
   const [fileSize, setFileSize] = useState("~14 MB");
   const [showMacFix, setShowMacFix] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
+  const [currentFact, setCurrentFact] = useState(FUN_FACTS[0]);
+  const [copied1, setCopied1] = useState(false);
+  const [copied2, setCopied2] = useState(false);
+
+  const handleCopy = (text: string, setCopied: (value: boolean) => void) => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  useEffect(() => {
+    if (showMacFix) {
+      setCurrentFact(FUN_FACTS[Math.floor(Math.random() * FUN_FACTS.length)]);
+    }
+  }, [showMacFix]);
 
   const handleDownload = () => {
     setShowThankYou(true);
@@ -64,73 +89,97 @@ export function DownloadSection() {
         {/* Options */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto items-stretch">
 
-          {/* Main Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-black text-white p-8 sm:p-10 rounded-3xl border border-black shadow-2xl flex flex-col justify-between space-y-6 relative group"
-          >
-            <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-white text-black text-[11px] font-semibold tracking-wide uppercase font-mono shadow-md">
-              Recommended
-            </div>
+          {/* Windows Column */}
+          <div className="flex flex-col h-full gap-6">
+            {/* Main Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-black text-white p-8 sm:p-10 rounded-3xl border border-black shadow-2xl flex flex-col justify-between space-y-6 relative group shrink-0"
+            >
+              <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-white text-black text-[11px] font-semibold tracking-wide uppercase font-mono shadow-md">
+                Recommended
+              </div>
 
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-white">
-                  <Monitor className="w-6 h-6" />
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-white">
+                    <Monitor className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white font-heading">Windows Installer (x64)</h3>
+                    <div className="text-xs text-white/60 font-mono">Windows 10 / 11 • Version {version}</div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white font-heading">Windows Installer (x64)</h3>
-                  <div className="text-xs text-white/60 font-mono">Windows 10 / 11 • Version {version}</div>
+
+                <p className="text-white/80 text-sm leading-relaxed font-body">
+                  Includes the full Tauri v2 executable, system tray integration, Rainmeter desktop widget overlay, and SQLite local storage engine.
+                </p>
+
+                <div className="grid grid-cols-2 gap-2 pt-2 text-xs font-mono text-white/80">
+                  <div className="flex items-center gap-2">
+                    <DotIcon className="w-3.5 h-3.5 text-white" />
+                    <span>Single Installer file ({fileSize})</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <DotIcon className="w-3.5 h-3.5 text-white" />
+                    <span>Autostart Plugin Included</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <DotIcon className="w-3.5 h-3.5 text-white" />
+                    <span>Rainmeter Desktop Widget</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <DotIcon className="w-3.5 h-3.5 text-white" />
+                    <span>SQLite Offline Storage</span>
+                  </div>
                 </div>
               </div>
 
-              <p className="text-white/80 text-sm leading-relaxed font-body">
-                Includes the full Tauri v2 executable, system tray integration, Rainmeter desktop widget overlay, and SQLite local storage engine.
-              </p>
-
-              <div className="grid grid-cols-2 gap-2 pt-2 text-xs font-mono text-white/80">
-                <div className="flex items-center gap-2">
-                  <DotIcon className="w-3.5 h-3.5 text-white" />
-                  <span>Single Installer file ({fileSize})</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <DotIcon className="w-3.5 h-3.5 text-white" />
-                  <span>Autostart Plugin Included</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <DotIcon className="w-3.5 h-3.5 text-white" />
-                  <span>Rainmeter Desktop Widget</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <DotIcon className="w-3.5 h-3.5 text-white" />
-                  <span>SQLite Offline Storage</span>
-                </div>
+              <div className="pt-4 border-t border-white/20 flex flex-col sm:flex-row items-center gap-3">
+                <a
+                  href={downloadUrl}
+                  download={`cp-companion_${version}_x64_en-US.msi`}
+                  onClick={handleDownload}
+                  className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white text-black hover:bg-slate-200 font-semibold text-sm shadow-xl transition-all"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Download CP Companion v{version}</span>
+                </a>
+                <a
+                  href="https://github.com/IamMradul/CP-Companion/releases"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-medium text-xs border border-white/20 transition-colors"
+                >
+                  <span>GitHub Releases</span>
+                </a>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="pt-4 border-t border-white/20 flex flex-col sm:flex-row items-center gap-3">
-              <a
-                href={downloadUrl}
-                download={`cp-companion_${version}_x64_en-US.msi`}
-                onClick={handleDownload}
-                className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white text-black hover:bg-slate-200 font-semibold text-sm shadow-xl transition-all"
-              >
-                <Download className="w-4 h-4" />
-                <span>Download CP Companion v{version}</span>
-              </a>
-              <a
-                href="https://github.com/IamMradul/CP-Companion/releases"
-                target="_blank"
-                rel="noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-medium text-xs border border-white/20 transition-colors"
-              >
-                <span>GitHub Releases</span>
-              </a>
-            </div>
-          </motion.div>
+            {/* Fact Box */}
+            <AnimatePresence>
+              {showMacFix && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex-1 rounded-3xl border-2 border-black bg-white shadow-[4px_4px_0px_rgba(0,0,0,1)] p-8 sm:p-10 flex flex-col items-center justify-center text-center"
+                >
+                  <div className="w-16 h-16 bg-[#ffeb3b] border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] rounded-2xl flex items-center justify-center mb-6">
+                    <Lightbulb className="w-8 h-8 text-black" />
+                  </div>
+                  <h4 className="font-black text-xl sm:text-2xl text-black font-heading mb-3 uppercase tracking-wide">Fun Fact</h4>
+                  <p className="text-sm sm:text-base text-black/80 font-body leading-relaxed max-w-[320px] font-medium">
+                    {currentFact}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           {/* macOS Card */}
           <motion.div
@@ -210,14 +259,34 @@ export function DownloadSection() {
 
                       <div className="space-y-3">
                         <div className="space-y-1.5">
-                          <p className="text-xs text-black/90 font-mono font-bold">1. Restore executable permissions:</p>
+                          <div className="flex items-center justify-between">
+                            <p className="text-xs text-black/90 font-mono font-bold">1. Restore executable permissions:</p>
+                            <button
+                              onClick={() => handleCopy("chmod +x /Applications/cp-companion.app/Contents/MacOS/cp-companion", setCopied1)}
+                              className="p-1 hover:bg-black/5 rounded text-black/60 hover:text-black transition-colors flex items-center justify-center gap-1 group"
+                              title="Copy command"
+                            >
+                              {copied1 ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />}
+                              <span className="text-[10px] font-bold uppercase tracking-wider">{copied1 ? 'Copied' : 'Copy'}</span>
+                            </button>
+                          </div>
                           <div className="text-[11px] font-mono text-black font-semibold select-all bg-[#F4F4F0] p-3 rounded-lg border border-black/20 whitespace-pre-wrap break-words">
                             chmod +x /Applications/cp-companion.app/Contents/MacOS/cp-companion
                           </div>
                         </div>
 
                         <div className="space-y-1.5">
-                          <p className="text-xs text-black/90 font-mono font-bold">2. Remove the Quarantine flag:</p>
+                          <div className="flex items-center justify-between">
+                            <p className="text-xs text-black/90 font-mono font-bold">2. Remove the Quarantine flag:</p>
+                            <button
+                              onClick={() => handleCopy("xattr -cr /Applications/cp-companion.app", setCopied2)}
+                              className="p-1 hover:bg-black/5 rounded text-black/60 hover:text-black transition-colors flex items-center justify-center gap-1 group"
+                              title="Copy command"
+                            >
+                              {copied2 ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />}
+                              <span className="text-[10px] font-bold uppercase tracking-wider">{copied2 ? 'Copied' : 'Copy'}</span>
+                            </button>
+                          </div>
                           <div className="text-[11px] font-mono text-black font-semibold select-all bg-[#F4F4F0] p-3 rounded-lg border border-black/20 whitespace-pre-wrap break-words">
                             xattr -cr /Applications/cp-companion.app
                           </div>
@@ -237,9 +306,10 @@ export function DownloadSection() {
       </div>
 
       {/* Thank You Popup */}
-      <AnimatePresence>
-        {showThankYou && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 pointer-events-none">
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {showThankYou && (
+            <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4 pointer-events-none">
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -262,7 +332,9 @@ export function DownloadSection() {
             </motion.div>
           </div>
         )}
-      </AnimatePresence>
+        </AnimatePresence>,
+        document.body
+      )}
 
     </section>
   );

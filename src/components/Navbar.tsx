@@ -20,7 +20,7 @@ export function Navbar() {
 
   return (
     <>
-      <motion.header 
+      <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -36,17 +36,15 @@ export function Navbar() {
         </a>
 
         {/* Desktop Nav Links (center, hidden below md) */}
-        <nav className="hidden md:flex flex-row items-center text-[21px] text-black font-body">
+        <nav className="hidden md:flex flex-row items-center gap-4 lg:gap-6 text-[19px] sm:text-[21px] text-black font-body">
           {NAV_LINKS.map((link, index) => (
-            <span key={link.name}>
-              <a
-                href={link.href}
-                className="hover:opacity-60 transition-opacity font-medium"
-              >
-                {link.name}
-              </a>
-              {index < NAV_LINKS.length - 1 && ',\u00A0'}
-            </span>
+            <a
+              key={link.name}
+              href={link.href}
+              className="hover:opacity-60 transition-opacity font-medium"
+            >
+              {link.name}{index < NAV_LINKS.length - 1 && ','}
+            </a>
           ))}
         </nav>
 
@@ -57,7 +55,7 @@ export function Navbar() {
             className="inline-flex items-center gap-2 text-base text-black font-medium underline underline-offset-2 hover:opacity-60 transition-opacity"
           >
             <Download className="w-4 h-4" />
-            <span>Download Free</span>
+            <span>Download </span>
           </a>
         </div>
 

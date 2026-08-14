@@ -38,23 +38,28 @@ export function BackgroundVideo() {
       targetTimeRef.current = newTarget;
     };
 
-    const updateVideo = () => {
+    let lastSeekTime = 0;
+    const SEEK_THROTTLE = 66; // Approx 15fps max seek rate (1000ms / 15)
+
+    const updateVideo = (now: number) => {
       if (video.duration && !isNaN(video.duration)) {
         smoothTime += (targetTimeRef.current - smoothTime) * LERP_FACTOR;
 
         if (
           !isSeekingRef.current &&
-          Math.abs(smoothTime - video.currentTime) > 0.01
+          Math.abs(smoothTime - video.currentTime) > 0.05 &&
+          now - lastSeekTime > SEEK_THROTTLE
         ) {
           isSeekingRef.current = true;
+          lastSeekTime = now;
           video.currentTime = smoothTime;
         }
       }
       animationFrameId = requestAnimationFrame(updateVideo);
     };
 
-    updateVideo();
-    window.addEventListener('mousemove', handleMouseMove);
+    animationFrameId = requestAnimationFrame(updateVideo);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
