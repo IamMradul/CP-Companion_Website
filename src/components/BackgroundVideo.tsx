@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react';
 
 const VIDEO_URL =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260530_042513_df96a13b-6155-4f6e-8b93-c9dee66fba08.mp4';
-const SENSITIVITY = 0.8;
-const LERP_FACTOR = 0.04; // Decreased from 0.08 for even smoother, floatier interpolation
+const SENSITIVITY = 1.8; // Increased for much faster rotation
+const LERP_FACTOR = 0.15; // Increased for faster reactivity to mouse pointer
 
 export function BackgroundVideo() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -39,7 +39,7 @@ export function BackgroundVideo() {
     };
 
     let lastSeekTime = 0;
-    const SEEK_THROTTLE = 66; // Approx 15fps max seek rate (1000ms / 15)
+    const SEEK_THROTTLE = 50; // Decreased to update video more frequently for smoothness
 
     const updateVideo = (now: number) => {
       if (video.duration && !isNaN(video.duration)) {
@@ -47,7 +47,7 @@ export function BackgroundVideo() {
 
         if (
           !isSeekingRef.current &&
-          Math.abs(smoothTime - video.currentTime) > 0.05 &&
+          Math.abs(smoothTime - video.currentTime) > 0.02 &&
           now - lastSeekTime > SEEK_THROTTLE
         ) {
           isSeekingRef.current = true;
@@ -90,6 +90,8 @@ export function BackgroundVideo() {
       className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
       style={{
         objectPosition: '70% center',
+        transform: 'translateZ(0)',
+        willChange: 'transform'
       }}
     />
   );

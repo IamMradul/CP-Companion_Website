@@ -15,6 +15,13 @@ export function Hero() {
   });
 
   const [version, setVersion] = useState("3.1.1");
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
 
   useEffect(() => {
     fetch("https://api.github.com/repos/IamMradul/CP-Companion/releases/latest")
@@ -29,37 +36,70 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col justify-between pt-24 pb-8 md:justify-center md:py-0 px-4 sm:px-8 md:px-12 overflow-hidden bg-[#EAEAEA]">
+    <section className="relative min-h-screen w-full flex flex-col pt-24 pb-8 md:pt-32 md:pb-24 px-4 sm:px-8 md:px-12 overflow-hidden bg-[#EAEAEA]">
       {/* Background Video ONLY in Hero section */}
       <BackgroundVideo />
 
-      {/* Hero Content Overlay: Mobile uses flex justify-between min-h-screen calc; Laptop uses standard block */}
-      <div className="max-w-2xl relative z-10 pointer-events-auto flex flex-col justify-between min-h-[calc(100vh-9rem)] md:min-h-0 md:block w-full">
-        
-        {/* Top Text Block (Mobile top / Laptop standard flow) */}
-        <motion.div 
+      {/* Hero Content Overlay */}
+      <div className="max-w-2xl relative z-10 pointer-events-auto flex flex-col flex-1 w-full">
+
+        {/* Top Text Block (Blurred Text) */}
+        <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="pt-2 md:pt-0 md:mb-6"
+          className="pt-2 md:pt-16"
         >
-          {/* 1. Blurred intro label */}
+          {/* 1. Blurred intro label with spotlight unblur */}
           <div
-            className="select-none mb-3 sm:mb-4 text-black font-body"
-            style={{
-              fontSize: 'clamp(18px, 4vw, 28px)',
-              lineHeight: 1.3,
-              fontWeight: 400,
-              filter: 'blur(1.5px)',
-              textShadow: '0px 0px 20px rgba(255, 255, 255, 0.9), 0px 0px 40px rgba(255, 255, 255, 0.7)'
-            }}
+            className="relative mb-3 sm:mb-4 cursor-default"
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
           >
-            Hey there, meet CP Companion,
-            <br />
-            The Ultimate Desktop App for Competitive Programmers
-          </div>
+            {/* Base layer: Blurred */}
+            <div
+              className="select-none text-black font-body transition-all duration-300"
+              style={{
+                fontSize: 'clamp(18px, 4vw, 28px)',
+                lineHeight: 1.3,
+                fontWeight: 400,
+                filter: isHovering ? 'blur(4px)' : 'blur(4px)', // Actually always keep base blurred, overlay handles sharpness
+                textShadow: '0px 0px 20px rgba(255, 255, 255, 0.9), 0px 0px 40px rgba(255, 255, 255, 0.7)'
+              }}
+            >
+              Hey there, meet CP Companion,
+              <br />
+              The Ultimate Desktop App for Competitive Programmers
+            </div>
 
-          {/* 2. Typewriter text */}
+            {/* Overlay layer: Sharp text with radial mask */}
+            <motion.div
+              className="absolute inset-0 select-none text-black font-body pointer-events-none"
+              animate={{ opacity: isHovering ? 1 : 0 }}
+              transition={{ duration: 0.2 }}
+              style={{
+                fontSize: 'clamp(18px, 4vw, 28px)',
+                lineHeight: 1.3,
+                fontWeight: 400,
+                WebkitMaskImage: `radial-gradient(circle 90px at ${mousePos.x}px ${mousePos.y}px, black 0%, transparent 100%)`,
+                maskImage: `radial-gradient(circle 90px at ${mousePos.x}px ${mousePos.y}px, black 0%, transparent 100%)`,
+              }}
+            >
+              Hey there, meet CP Companion,
+              <br />
+              The Ultimate Desktop App for Competitive Programmers
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Middle Block (Typewriter text - pushes to bottom on laptop) */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="pt-8 md:pt-0 md:mt-auto"
+        >
           <p
             className="text-black min-h-[56px] sm:min-h-[64px] font-body"
             style={{
@@ -76,12 +116,12 @@ export function Hero() {
           </p>
         </motion.div>
 
-        {/* Bottom Buttons & Release Badge Block (Mobile bottom / Laptop standard flow) */}
-        <motion.div 
+        {/* Bottom Buttons & Release Badge Block (Pushes to bottom on mobile, sits below typewriter on laptop) */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="pt-12 md:pt-0"
+          className="pt-12 md:pt-6 mt-auto md:mt-0"
         >
           {/* 3. Action pill buttons */}
           <div className="flex flex-wrap gap-2 items-center">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Download, Monitor, ShieldCheck, Apple, PlayCircle, ChevronDown, DotIcon, X, Heart, Lightbulb, Copy, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -22,6 +22,15 @@ export function DownloadSection() {
   const [currentFact, setCurrentFact] = useState(FUN_FACTS[0]);
   const [copied1, setCopied1] = useState(false);
   const [copied2, setCopied2] = useState(false);
+  const macFixRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (showMacFix && macFixRef.current) {
+      setTimeout(() => {
+        macFixRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 150); // wait for initial render of motion div
+    }
+  }, [showMacFix]);
 
   const handleCopy = (text: string, setCopied: (value: boolean) => void) => {
     navigator.clipboard.writeText(text);
@@ -228,7 +237,7 @@ export function DownloadSection() {
               </div>
 
               {/* Gatekeeper Dropdown */}
-              <div className="pt-4">
+              <div className="pt-4" ref={macFixRef}>
                 <button
                   onClick={() => setShowMacFix(!showMacFix)}
                   className="w-full flex items-center justify-between p-4 rounded-xl bg-[#ffeb3b] border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all"
@@ -241,8 +250,18 @@ export function DownloadSection() {
                 </button>
 
                 {/* Dropdown Content */}
-                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${showMacFix ? 'max-h-[800px] opacity-100 mt-3' : 'max-h-0 opacity-0'}`}>
-                  <div className="p-5 sm:p-6 rounded-xl bg-white border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] space-y-5">
+                <AnimatePresence initial={false}>
+                  {showMacFix && (
+                    <motion.div
+                      initial={{ height: 0 }}
+                      animate={{ height: 'auto' }}
+                      exit={{ height: 0 }}
+                      transition={{ type: "spring", bounce: 0, duration: 0.5 }}
+                      style={{ willChange: "height" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pt-3 pb-1">
+                        <div className="p-5 sm:p-6 rounded-xl bg-white border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] space-y-5">
 
                     <div className="space-y-2">
                       <p className="text-sm text-black font-body font-bold">Why is this happening?</p>
@@ -295,7 +314,10 @@ export function DownloadSection() {
                     </div>
 
                   </div>
-                </div>
+                        </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           </motion.div>

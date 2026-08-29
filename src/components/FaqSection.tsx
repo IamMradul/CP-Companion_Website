@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { HelpCircle, ChevronDown } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface FaqItem {
   question: string;
@@ -90,11 +90,22 @@ export function FaqSection() {
                   </div>
                 </button>
 
-                {isOpen && (
-                  <div className="px-5 pb-5 text-sm text-black/80 font-body leading-relaxed border-t border-black/10 pt-3">
-                    {faq.answer}
-                  </div>
-                )}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                      style={{ willChange: "height, opacity", transform: "translateZ(0)" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-5 text-sm text-black/80 font-body leading-relaxed border-t border-black/10 pt-3">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             );
           })}
