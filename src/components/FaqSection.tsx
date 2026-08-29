@@ -9,8 +9,12 @@ interface FaqItem {
 
 const FAQS: FaqItem[] = [
   {
+    question: 'Do I need to create any accounts or supply API keys?',
+    answer: 'No! CP Companion connects to our centralized server automatically. Just download, install, and select your platforms.'
+  },
+  {
     question: 'Which competitive programming platforms are supported?',
-    answer: 'CP Companion natively tracks Codeforces, LeetCode, AtCoder, CodeChef, GeeksforGeeks, HackerRank, and 50+ platforms dynamically through the Clist API v4. You can search, filter, select, and save your preferred platforms in settings.'
+    answer: 'CP Companion natively tracks Codeforces, LeetCode, AtCoder, CodeChef, GeeksforGeeks, HackerRank, and 50+ platforms dynamically. You can search, filter, select, and save your preferred platforms in settings.'
   },
   {
     question: 'How does the Rainmeter-style desktop widget work?',
@@ -18,11 +22,7 @@ const FAQS: FaqItem[] = [
   },
   {
     question: 'Will using CP Companion exceed Clist API rate limits?',
-    answer: 'No! CP Companion employs a 2-tier architecture. Network requests are only made by the main application window. The fetched contest schedules are saved into local SQLite database (`cp_companion.db`). The desktop widget only reads from local SQLite, preventing rate limits and bans.'
-  },
-  {
-    question: 'Where are my Clist API credentials stored?',
-    answer: 'Your Clist username and API key are saved locally on your computer inside the OS AppData directory within the `app_config` SQLite table. Your credentials never touch any remote servers other than direct HTTPS authorization calls to Clist.by.'
+    answer: 'No! CP Companion connects to a centralized server which aggregates and caches the data for all users. You will never face rate limit issues or IP bans.'
   },
   {
     question: 'Does CP Companion support system tray and launch on startup?',

@@ -27,7 +27,7 @@ export function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-black/10"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-12 border-b border-black/10"
         >
 
           {/* Brand Info */}
@@ -46,7 +46,7 @@ export function Footer() {
                 Tauri v2 + Rust
               </span>
               <span className="px-2.5 py-1 rounded-md bg-black/10 text-black border border-black/15 font-bold">
-                Clist API v4
+                Node.js Server
               </span>
               <span className="px-2.5 py-1 rounded-md bg-black/10 text-black border border-black/15 font-bold">
                 SQLite Cache
@@ -54,26 +54,14 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-3">
-            <div className="text-xs font-bold uppercase tracking-wider text-black font-mono">Navigation</div>
-            <ul className="space-y-2 font-body">
-              <li><a href="#features" className="hover:text-black font-medium transition-colors">Features</a></li>
-              <li><a href="#demo" className="hover:text-black font-medium transition-colors">Live Interactive Demo</a></li>
-              <li><a href="#architecture" className="hover:text-black font-medium transition-colors">Architecture</a></li>
-              <li><a href="#setup" className="hover:text-black font-medium transition-colors">Setup Guide</a></li>
-              <li><a href="#download" className="hover:text-black font-medium transition-colors">Download Windows Installer</a></li>
-              <li><a href="#faq" className="hover:text-black font-medium transition-colors">FAQ</a></li>
-            </ul>
-          </div>
 
           {/* External Resources */}
-          <div className="space-y-3">
+          <div className="space-y-3 md:justify-self-center">
             <div className="text-xs font-bold uppercase tracking-wider text-black font-mono">Resources</div>
             <ul className="space-y-2 font-body">
               <li>
                 <a href="https://clist.by" target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-black font-medium transition-colors">
-                  <span>Clist.by API</span>
+                  <span>Clist.by Data Source</span>
                   <ExternalLink className="w-3 h-3 opacity-60" />
                 </a>
               </li>
@@ -89,21 +77,15 @@ export function Footer() {
                   <ExternalLink className="w-3 h-3 opacity-60" />
                 </a>
               </li>
-              <li>
-                <a href="https://www.youtube.com/watch?v=ilP9Ci6ICvM" target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-black font-medium transition-colors">
-                  <span>Setup Video Tutorial</span>
-                  <ExternalLink className="w-3 h-3 opacity-60" />
-                </a>
-              </li>
             </ul>
           </div>
 
-          {/* Authors & X Handles Column */}
+          {/* Authors Column */}
           <div className="space-y-4">
             <div className="space-y-2">
               <div className="text-xs font-bold uppercase tracking-wider text-black font-mono">Created By</div>
-              <ul className="space-y-2 font-body">
-                <li>
+              <ul className="space-y-3 font-body">
+                <li className="flex flex-wrap items-center gap-3">
                   <a
                     href="https://github.com/IamMradul"
                     target="_blank"
@@ -112,10 +94,18 @@ export function Footer() {
                   >
                     <GithubIcon className="w-3.5 h-3.5 shrink-0" />
                     <span>Mradul Gupta</span>
-                    <ExternalLink className="w-2.5 h-2.5 opacity-50" />
+                  </a>
+                  <a
+                    href="https://x.com/MardulGupta"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 font-medium text-black/60 hover:text-black transition-colors"
+                  >
+                    <XIcon className="w-3 h-3 shrink-0" />
+                    <span className="text-[11px]">@MradulGupta</span>
                   </a>
                 </li>
-                <li>
+                <li className="flex flex-wrap items-center gap-3">
                   <a
                     href="https://github.com/siddharthpaul2005"
                     target="_blank"
@@ -124,37 +114,15 @@ export function Footer() {
                   >
                     <GithubIcon className="w-3.5 h-3.5 shrink-0" />
                     <span>Siddharth Paul</span>
-                    <ExternalLink className="w-2.5 h-2.5 opacity-50" />
                   </a>
-                </li>
-              </ul>
-            </div>
-
-            <div className="space-y-2 pt-2 border-t border-black/10">
-              <div className="text-xs font-bold uppercase tracking-wider text-black font-mono">Connect on X</div>
-              <ul className="space-y-1.5 font-body">
-                <li>
-                  <a
-                    href="https://x.com/MardulGupta"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 font-medium text-black/80 hover:text-black transition-colors"
-                  >
-                    <XIcon className="w-3.5 h-3.5 shrink-0 text-black" />
-                    <span>@MradulGupta</span>
-                    <ExternalLink className="w-2.5 h-2.5 opacity-50" />
-                  </a>
-                </li>
-                <li>
                   <a
                     href="https://x.com/SiddharthP29523"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 font-medium text-black/80 hover:text-black transition-colors"
+                    className="inline-flex items-center gap-1 font-medium text-black/60 hover:text-black transition-colors"
                   >
-                    <XIcon className="w-3.5 h-3.5 shrink-0 text-black" />
-                    <span>@SiddharthPaul</span>
-                    <ExternalLink className="w-2.5 h-2.5 opacity-50" />
+                    <XIcon className="w-3 h-3 shrink-0" />
+                    <span className="text-[11px]">@SiddharthPaul</span>
                   </a>
                 </li>
               </ul>

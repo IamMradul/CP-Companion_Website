@@ -8,6 +8,7 @@ import { DownloadSection } from './components/DownloadSection';
 import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
 import { FollowPopup } from './components/FollowPopup';
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
       </main>
       <Footer />
       <FollowPopup />
+      <Analytics />
     </div>
   );
 }

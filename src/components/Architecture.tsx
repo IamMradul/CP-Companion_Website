@@ -19,7 +19,7 @@ export function Architecture() {
             <span>High Performance Architecture</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black tracking-tight font-heading">
-            Built on Tauri v2 & Rust Backend
+            Modern 3-Tier Architecture
           </h2>
           <p className="text-black/70 text-base font-body">
             Designed to minimize memory consumption (~15MB installer) and guarantee 100% uptime without hitting Clist API rate limits.
@@ -53,9 +53,9 @@ export function Architecture() {
           </div>
 
           <div className="retro-card-light p-5 rounded-2xl space-y-2">
-            <div className="text-xs font-mono uppercase text-black/60 font-bold">External API</div>
-            <div className="text-lg font-bold text-black font-heading">Clist.by API v4</div>
-            <div className="text-xs text-black/70 font-body">Normalizes datetime & aggregates 50+ global CP platforms.</div>
+            <div className="text-xs font-mono uppercase text-black/60 font-bold">Data Source</div>
+            <div className="text-lg font-bold text-black font-heading">Centralized Server</div>
+            <div className="text-xs text-black/70 font-body">Node.js server handles API limits and normalizes data for all users.</div>
           </div>
         </motion.div>
 
@@ -81,9 +81,9 @@ export function Architecture() {
                 <span className="w-8 h-8 rounded-lg bg-black text-white font-mono font-bold flex items-center justify-center text-xs">01</span>
                 <span className="text-[10px] font-mono bg-black/10 text-black px-2 py-0.5 rounded font-bold">Main Window</span>
               </div>
-              <h4 className="text-sm font-bold text-black font-heading">Clist API Network Fetch</h4>
+              <h4 className="text-sm font-bold text-black font-heading">Centralized Server Fetch</h4>
               <p className="text-xs text-black/70 font-body">
-                Initiates external HTTP requests to Clist API v4 using `reqwest` crate only when requested or on startup.
+                Initiates fast HTTP requests to our Node.js server via the `reqwest` crate only when requested or on startup.
               </p>
             </div>
 
@@ -105,7 +105,7 @@ export function Architecture() {
               </div>
               <h4 className="text-sm font-bold text-black font-heading">Local SQLite IPC Polling</h4>
               <p className="text-xs text-black/70 font-body">
-                Widget polls local SQLite database every 5s via Tauri IPC. Never hits external API directly = Zero rate-limit bans!
+                Widget polls local SQLite database every 5s via Tauri IPC. Never hits the network directly.
               </p>
             </div>
           </div>

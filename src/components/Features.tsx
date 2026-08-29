@@ -7,7 +7,7 @@ export function Features() {
       icon: Globe,
       color: 'from-blue-600 to-indigo-600',
       title: 'Multi-Platform Contest Tracker',
-      description: 'Tracks upcoming contests across Codeforces, LeetCode, AtCoder, CodeChef, GeeksforGeeks, HackerRank, and 50+ platforms automatically via Clist API v4.'
+      description: 'Tracks upcoming contests across Codeforces, LeetCode, AtCoder, CodeChef, GeeksforGeeks, HackerRank, and 50+ platforms automatically.'
     },
     {
       icon: Clock,
@@ -19,7 +19,7 @@ export function Features() {
       icon: Database,
       color: 'from-purple-600 to-indigo-600',
       title: 'Zero Rate Limiting & SQLite Caching',
-      description: '2-tier synchronization strategy: Main app fetches API data and caches it into local SQLite (`cp_companion.db`). Desktop widget polls SQLite every 5s with 0% CPU.'
+      description: 'Our central server handles Clist rate limits. The app fetches data and caches it into local SQLite (`cp_companion.db`). The desktop widget polls SQLite every 5s with 0% CPU.'
     },
     {
       icon: Layers,
@@ -36,8 +36,8 @@ export function Features() {
     {
       icon: Shield,
       color: 'from-rose-600 to-pink-600',
-      title: '100% Private Local Credentials',
-      description: 'Your Clist API credentials and platform settings are stored directly in your machine’s AppData SQLite database. Zero external telemetry or third-party servers.'
+      title: 'Zero Configuration',
+      description: 'No accounts, no API keys, no setup required. Just download, pick your favorite platforms, and you are ready to track contests.'
     }
   ];
 

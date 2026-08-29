@@ -5,24 +5,24 @@ export function SetupGuide() {
   const steps = [
     {
       number: '01',
-      title: 'Create a Clist Account',
-      description: 'Visit clist.by and register a free account. Clist aggregates contest schedules across 50+ programming platforms globally.',
-      link: 'https://clist.by',
-      linkText: 'Open Clist.by'
+      title: 'Download & Install',
+      description: 'Download the latest CP Companion installer and run it on your Windows machine. It installs in seconds and takes minimal space.',
+      link: '#download',
+      linkText: 'Download CP Companion'
     },
     {
       number: '02',
-      title: 'Obtain API Credentials',
-      description: 'Navigate to the Clist API v4 documentation page. Copy your Username and click "Authorization" to retrieve your unique API key.',
-      link: 'https://clist.by/api/v4/doc/',
-      linkText: 'View API Docs'
+      title: 'Select Platforms',
+      description: 'Launch CP Companion, open Settings, and select your preferred platforms like Codeforces or LeetCode. No accounts or API keys required!',
+      link: '#download',
+      linkText: 'Get Started'
     },
     {
       number: '03',
-      title: 'Enter in CP Companion',
-      description: 'Launch CP Companion, open Settings, paste your Clist Username and API Key, and select your preferred platforms. You are ready to go!',
-      link: '#download',
-      linkText: 'Download CP Companion'
+      title: 'You are ready to go!',
+      description: 'The app will instantly fetch the latest contests from our central server. The desktop widget will automatically start tracking your next contest.',
+      link: '#features',
+      linkText: 'View Features'
     }
   ];
 
@@ -40,13 +40,13 @@ export function SetupGuide() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black text-white text-xs font-semibold uppercase tracking-wider font-mono shadow-sm">
             <Key className="w-3.5 h-3.5" />
-            <span>3-Minute Setup Guide</span>
+            <span>Zero-Config Setup</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black tracking-tight font-heading">
             How to Get Started with CP Companion
           </h2>
           <p className="text-black/70 text-base font-body">
-            Follow these 3 simple steps to configure your API key and sync upcoming contest schedules.
+            Follow these 3 simple steps to install the app and sync upcoming contest schedules instantly.
           </p>
         </motion.div>
 
@@ -105,15 +105,16 @@ export function SetupGuide() {
         >
           <PlayCircle className="w-5 h-5 text-black shrink-0" />
           <span className="text-xs text-black/80 font-body">
-            Need visual assistance? Check out the step-by-step video tutorial on{' '}
+            Note: The{' '}
             <a
               href="https://www.youtube.com/watch?v=ilP9Ci6ICvM"
               target="_blank"
               rel="noreferrer"
               className="text-black underline font-bold hover:opacity-60"
             >
-              YouTube Video Guide →
+              YouTube Video Guide
             </a>
+            {' '}shows the older v2 setup. V3 is even easier with zero API keys required!
           </span>
         </motion.div>
 
