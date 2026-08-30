@@ -14,7 +14,7 @@ const FUN_FACTS = [
 
 export function DownloadSection() {
   const [version] = useState("3.1.4");
-  const [downloadUrl] = useState("/cp-companion_3.1.4_x64_en-US.msi");
+  const [downloadUrl] = useState("/cp-companion_3.1.4.0_x64.msix");
   const [macDownloadUrl] = useState("/cp-companion_3.1.4_universal.dmg");
   const [fileSize] = useState("~5 MB");
   const [showMacFix, setShowMacFix] = useState(false);
@@ -127,7 +127,7 @@ export function DownloadSection() {
               <div className="pt-4 border-t border-white/20 flex flex-col sm:flex-row items-center gap-3">
                 <a
                   href={downloadUrl}
-                  download={`cp-companion_${version}_x64_en-US.msi`}
+                  download={`cp-companion_${version}.0_x64.msix`}
                   onClick={handleDownload}
                   className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white text-black hover:bg-slate-200 font-semibold text-sm shadow-xl transition-all"
                 >

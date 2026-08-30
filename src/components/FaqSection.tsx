@@ -30,7 +30,7 @@ const FAQS: FaqItem[] = [
   },
   {
     question: 'How do I update CP Companion when a new release is available?',
-    answer: 'CP Companion features a built-in update notification banner (`UpdateNotification.tsx`) that alerts you when a new release is available on GitHub. You can also download updated `.msi` installers directly from this download website.'
+    answer: 'CP Companion features a built-in update notification banner (`UpdateNotification.tsx`) that alerts you when a new release is available on GitHub. You can also download updated `.msix` installers directly from this download website.'
   }
 ];
 
