@@ -13,10 +13,10 @@ const FUN_FACTS = [
 ];
 
 export function DownloadSection() {
-  const [version, setVersion] = useState("3.1.1");
-  const [downloadUrl, setDownloadUrl] = useState("/cp-companion_3.1.2_x64_en-US.msi");
-  const [macDownloadUrl, setMacDownloadUrl] = useState("/cp-companion_3.1.2_aarch64.dmg");
-  const [fileSize, setFileSize] = useState("~14 MB");
+  const [version] = useState("3.1.4");
+  const [downloadUrl] = useState("/cp-companion_3.1.4_x64_en-US.msi");
+  const [macDownloadUrl] = useState("/cp-companion_3.1.4_universal.dmg");
+  const [fileSize] = useState("~5 MB");
   const [showMacFix, setShowMacFix] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
   const [currentFact, setCurrentFact] = useState(FUN_FACTS[0]);
@@ -47,29 +47,6 @@ export function DownloadSection() {
   const handleDownload = () => {
     setShowThankYou(true);
   };
-
-  useEffect(() => {
-    fetch("https://api.github.com/repos/IamMradul/CP-Companion/releases/latest")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data && data.tag_name) {
-          const v = data.tag_name.replace(/^v/, '');
-          setVersion(v);
-
-          const msiAsset = data.assets?.find((a: any) => a.name.endsWith('.msi'));
-          if (msiAsset) {
-            setDownloadUrl(msiAsset.browser_download_url);
-            setFileSize(`~${Math.round(msiAsset.size / (1024 * 1024))} MB`);
-          }
-
-          const dmgAsset = data.assets?.find((a: any) => a.name.endsWith('.dmg'));
-          if (dmgAsset) {
-            setMacDownloadUrl(dmgAsset.browser_download_url);
-          }
-        }
-      })
-      .catch((err) => console.error("Failed to fetch latest release:", err));
-  }, []);
 
   return (
     <section id="download" className="py-24 relative z-10 bg-[#EAEAEA] border-t border-black/10">

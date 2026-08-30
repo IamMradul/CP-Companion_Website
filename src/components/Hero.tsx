@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useTypewriter } from '../hooks/useTypewriter';
 import { BackgroundVideo } from './BackgroundVideo';
 import { Download, Monitor, Cpu, Key, Sparkles } from 'lucide-react';
@@ -14,7 +14,7 @@ export function Hero() {
     startDelay: 600,
   });
 
-  const [version, setVersion] = useState("3.1.1");
+  const [version] = useState("3.1.4");
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
@@ -22,18 +22,6 @@ export function Hero() {
     const rect = e.currentTarget.getBoundingClientRect();
     setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
-
-  useEffect(() => {
-    fetch("https://api.github.com/repos/IamMradul/CP-Companion/releases/latest")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data && data.tag_name) {
-          const v = data.tag_name.replace(/^v/, '');
-          setVersion(v);
-        }
-      })
-      .catch((err) => console.error("Failed to fetch latest release:", err));
-  }, []);
 
   return (
     <section className="relative min-h-screen w-full flex flex-col pt-24 pb-8 md:pt-32 md:pb-24 px-4 sm:px-8 md:px-12 overflow-hidden bg-[#EAEAEA]">
