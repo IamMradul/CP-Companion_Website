@@ -240,58 +240,58 @@ export function DownloadSection() {
                       <div className="pt-3 pb-1">
                         <div className="p-5 sm:p-6 rounded-xl bg-white border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] space-y-5">
 
-                    <div className="space-y-2">
-                      <p className="text-sm text-black font-body font-bold">Why is this happening?</p>
-                      <p className="text-[13px] text-black/80 font-body leading-relaxed">
-                        Since this is an indie app without a $99/year Apple Developer account, macOS flags it as "downloaded from the internet" and throws up a security blockade.
-                      </p>
-                    </div>
+                          <div className="space-y-2">
+                            <p className="text-sm text-black font-body font-bold">Why is this happening?</p>
+                            <p className="text-[13px] text-black/80 font-body leading-relaxed">
+                              Since this is an indie app without a $99/year Apple Developer account, macOS flags it as "downloaded from the internet" and throws up a security blockade.
+                            </p>
+                          </div>
 
-                    <div className="space-y-4">
-                      <p className="text-sm text-black font-body font-bold">The Fix (Takes 30 seconds):</p>
-                      <p className="text-[13px] text-black/80 font-body leading-relaxed">
-                        First, drag <code className="font-mono bg-black/5 px-1 py-0.5 rounded font-bold">cp-companion</code> from the `.dmg` into your Applications folder. Then, open the Terminal app on your Mac inside applications folder and run these two commands one by one:
-                      </p>
+                          <div className="space-y-4">
+                            <p className="text-sm text-black font-body font-bold">The Fix (Takes 30 seconds):</p>
+                            <p className="text-[13px] text-black/80 font-body leading-relaxed">
+                              First, drag <code className="font-mono bg-black/5 px-1 py-0.5 rounded font-bold">cp-companion</code> from the `.dmg` into your Applications folder. Then, open the Terminal app on your Mac inside applications folder and run these two commands one by one:
+                            </p>
 
-                      <div className="space-y-3">
-                        <div className="space-y-1.5">
-                          <div className="flex items-center justify-between">
-                            <p className="text-xs text-black/90 font-mono font-bold">1. Restore executable permissions:</p>
-                            <button
-                              onClick={() => handleCopy("chmod +x /Applications/cp-companion.app/Contents/MacOS/cp-companion", setCopied1)}
-                              className="p-1 hover:bg-black/5 rounded text-black/60 hover:text-black transition-colors flex items-center justify-center gap-1 group"
-                              title="Copy command"
-                            >
-                              {copied1 ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />}
-                              <span className="text-[10px] font-bold uppercase tracking-wider">{copied1 ? 'Copied' : 'Copy'}</span>
-                            </button>
-                          </div>
-                          <div className="text-[11px] font-mono text-black font-semibold select-all bg-[#F4F4F0] p-3 rounded-lg border border-black/20 whitespace-pre-wrap break-words">
-                            chmod +x /Applications/cp-companion.app/Contents/MacOS/cp-companion
-                          </div>
-                        </div>
+                            <div className="space-y-3">
+                              <div className="space-y-1.5">
+                                <div className="flex items-center justify-between">
+                                  <p className="text-xs text-black/90 font-mono font-bold">1. Restore executable permissions:</p>
+                                  <button
+                                    onClick={() => handleCopy("chmod +x /Applications/cp-companion.app/Contents/MacOS/cp-companion", setCopied1)}
+                                    className="p-1 hover:bg-black/5 rounded text-black/60 hover:text-black transition-colors flex items-center justify-center gap-1 group"
+                                    title="Copy command"
+                                  >
+                                    {copied1 ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />}
+                                    <span className="text-[10px] font-bold uppercase tracking-wider">{copied1 ? 'Copied' : 'Copy'}</span>
+                                  </button>
+                                </div>
+                                <div className="text-[11px] font-mono text-black font-semibold select-all bg-[#F4F4F0] p-3 rounded-lg border border-black/20 whitespace-pre-wrap break-words">
+                                  chmod +x /Applications/cp-companion.app/Contents/MacOS/cp-companion
+                                </div>
+                              </div>
 
-                        <div className="space-y-1.5">
-                          <div className="flex items-center justify-between">
-                            <p className="text-xs text-black/90 font-mono font-bold">2. Remove the Quarantine flag:</p>
-                            <button
-                              onClick={() => handleCopy("xattr -cr /Applications/cp-companion.app", setCopied2)}
-                              className="p-1 hover:bg-black/5 rounded text-black/60 hover:text-black transition-colors flex items-center justify-center gap-1 group"
-                              title="Copy command"
-                            >
-                              {copied2 ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />}
-                              <span className="text-[10px] font-bold uppercase tracking-wider">{copied2 ? 'Copied' : 'Copy'}</span>
-                            </button>
+                              <div className="space-y-1.5">
+                                <div className="flex items-center justify-between">
+                                  <p className="text-xs text-black/90 font-mono font-bold">2. Remove the Quarantine flag:</p>
+                                  <button
+                                    onClick={() => handleCopy("xattr -cr /Applications/cp-companion.app", setCopied2)}
+                                    className="p-1 hover:bg-black/5 rounded text-black/60 hover:text-black transition-colors flex items-center justify-center gap-1 group"
+                                    title="Copy command"
+                                  >
+                                    {copied2 ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />}
+                                    <span className="text-[10px] font-bold uppercase tracking-wider">{copied2 ? 'Copied' : 'Copy'}</span>
+                                  </button>
+                                </div>
+                                <div className="text-[11px] font-mono text-black font-semibold select-all bg-[#F4F4F0] p-3 rounded-lg border border-black/20 whitespace-pre-wrap break-words">
+                                  xattr -cr /Applications/cp-companion.app
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <div className="text-[11px] font-mono text-black font-semibold select-all bg-[#F4F4F0] p-3 rounded-lg border border-black/20 whitespace-pre-wrap break-words">
-                            xattr -cr /Applications/cp-companion.app
-                          </div>
+
                         </div>
                       </div>
-                    </div>
-
-                  </div>
-                        </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -309,28 +309,28 @@ export function DownloadSection() {
         <AnimatePresence>
           {showThankYou && (
             <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4 pointer-events-none">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="pointer-events-auto w-full max-w-sm bg-white border-2 border-black rounded-3xl shadow-[8px_8px_0px_rgba(0,0,0,1)] p-8 flex flex-col items-center text-center relative"
-            >
-              <button
-                onClick={() => setShowThankYou(false)}
-                className="absolute top-4 right-4 text-black/50 hover:text-black transition-colors"
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                className="pointer-events-auto w-full max-w-sm bg-white border-2 border-black rounded-3xl shadow-[8px_8px_0px_rgba(0,0,0,1)] p-8 flex flex-col items-center text-center relative"
               >
-                <X className="w-5 h-5" />
-              </button>
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 border border-red-200">
-                <Heart className="w-8 h-8 text-red-500 fill-red-500" />
-              </div>
-              <h3 className="text-2xl font-bold font-heading text-black mb-2">Thank You!</h3>
-              <p className="text-sm font-body text-black/70 leading-relaxed">
-                Your download should start automatically. We appreciate your support for CP Companion!
-              </p>
-            </motion.div>
-          </div>
-        )}
+                <button
+                  onClick={() => setShowThankYou(false)}
+                  className="absolute top-4 right-4 text-black/50 hover:text-black transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 border border-red-200">
+                  <Heart className="w-8 h-8 text-red-500 fill-red-500" />
+                </div>
+                <h3 className="text-2xl font-bold font-heading text-black mb-2">Thank You!</h3>
+                <p className="text-sm font-body text-black/70 leading-relaxed">
+                  Your download should start automatically. We appreciate your support for CP Companion!
+                </p>
+              </motion.div>
+            </div>
+          )}
         </AnimatePresence>,
         document.body
       )}

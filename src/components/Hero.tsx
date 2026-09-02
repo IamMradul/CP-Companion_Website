@@ -119,7 +119,7 @@ export function Hero() {
               className="w-full sm:w-auto inline-flex items-center justify-center bg-black text-white rounded-full text-xs sm:text-sm md:text-base px-5 py-2.5 sm:py-3 hover:bg-neutral-800 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.98] font-medium gap-2"
             >
               <Download className="w-4 h-4 shrink-0 text-white" />
-              <span>Download Windows MSIX (v{version})</span>
+              <span>Download Windows MSI (v{version})</span>
             </a>
 
             {/* Secondary Action Pills */}

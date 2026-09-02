@@ -51,28 +51,31 @@ export function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
             <>
               <p>Last updated: {new Date().toLocaleDateString()}</p>
               <h3 className="text-base font-bold text-black mt-6">1. Acceptance of Terms</h3>
-              <p>By accessing and using CP Companion, you accept and agree to be bound by the terms and provision of this agreement.</p>
+              <p>By downloading, installing, or using CP Companion, you accept and agree to be bound by the terms and provisions of this agreement.</p>
               
               <h3 className="text-base font-bold text-black mt-4">2. Description of Service</h3>
-              <p>CP Companion is a desktop application that provides tracking and statistics for competitive programming platforms.</p>
+              <p>CP Companion is a lightweight, cross-platform desktop application designed to track upcoming competitive programming contests. It fetches data via our servers and features a desktop widget for live tracking.</p>
               
-              <h3 className="text-base font-bold text-black mt-4">3. User Conduct</h3>
-              <p>You agree not to use the service for any illegal or unauthorized purpose. You must not, in the use of the service, violate any laws in your jurisdiction.</p>
+              <h3 className="text-base font-bold text-black mt-4">3. External Data Sources</h3>
+              <p>The application connects to our servers to fetch contest data aggregated from third-party platforms. You are expected to use this service reasonably without attempting to overload our servers or abuse the provided data.</p>
 
-              <h3 className="text-base font-bold text-black mt-4">4. Disclaimer of Warranties</h3>
-              <p>The service is provided on an "as is" and "as available" basis without any warranties of any kind.</p>
+              <h3 className="text-base font-bold text-black mt-4">4. User Conduct</h3>
+              <p>You agree not to use the service for any illegal or unauthorized purpose.</p>
+
+              <h3 className="text-base font-bold text-black mt-4">5. Disclaimer of Warranties</h3>
+              <p>The application is provided "as is" and "as available" without warranties of any kind. We are not responsible for any downtime or inaccuracies in the contest data.</p>
             </>
           ) : (
             <>
               <p>Last updated: {new Date().toLocaleDateString()}</p>
               <h3 className="text-base font-bold text-black mt-6">1. Information Collection</h3>
-              <p>CP Companion is designed with privacy in mind. The application runs locally on your machine and communicates directly with public APIs (like Clist.by) to fetch contest data.</p>
+              <p>CP Companion is built with a privacy-first architecture. The application connects to our centralized server to fetch contest data. We do not collect, track, or transmit any personal analytics or identifiable data from your device.</p>
               
               <h3 className="text-base font-bold text-black mt-4">2. Local Storage</h3>
-              <p>All your preferences, API keys, and cached data are stored entirely locally on your device using an SQLite database. We do not transmit your data to any central server.</p>
+              <p>Your app preferences and cached contest schedules are securely stored offline in a local SQLite database on your device. No personal information is ever sent to our servers.</p>
               
               <h3 className="text-base font-bold text-black mt-4">3. Third-Party Services</h3>
-              <p>The application interacts with third-party APIs (e.g., Codeforces, LeetCode, Clist.by) directly from your IP address. Please review their respective privacy policies regarding API usage.</p>
+              <p>The application fetches data aggregated from platforms like Codeforces, LeetCode, and Clist.by through our server. The app itself does not make direct network requests to these third-party APIs.</p>
               
               <h3 className="text-base font-bold text-black mt-4">4. Contact Us</h3>
               <p>If you have any questions about this Privacy Policy, please contact us on X (Twitter): <a href="https://x.com/MardulGupta" target="_blank" rel="noreferrer" className="text-black font-bold hover:underline">@MradulGupta</a> or <a href="https://x.com/SiddharthP29523" target="_blank" rel="noreferrer" className="text-black font-bold hover:underline">@SiddharthPaul</a>.</p>
