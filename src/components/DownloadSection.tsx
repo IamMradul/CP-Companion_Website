@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { useGithubVersion } from '../hooks/useGithubVersion';
 import { Download, Monitor, ShieldCheck, Apple, PlayCircle, ChevronDown, DotIcon, X, Heart, Lightbulb, Copy, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -13,9 +14,9 @@ const FUN_FACTS = [
 ];
 
 export function DownloadSection() {
-  const [version] = useState("3.1.4");
-  const [downloadUrl] = useState("/cp-companion_3.1.4.0_x64.msix");
-  const [macDownloadUrl] = useState("/cp-companion_3.1.4_universal.dmg");
+  const version = useGithubVersion();
+  const downloadUrl = `/cp-companion_${version}.0_x64.msix`;
+  const macDownloadUrl = `/cp-companion_${version}_universal.dmg`;
   const [fileSize] = useState("~5 MB");
   const [showMacFix, setShowMacFix] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);

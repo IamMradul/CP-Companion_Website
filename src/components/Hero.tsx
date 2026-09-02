@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTypewriter } from '../hooks/useTypewriter';
+import { useGithubVersion } from '../hooks/useGithubVersion';
 import { BackgroundVideo } from './BackgroundVideo';
 import { Download, Monitor, Cpu, Key, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -14,7 +15,7 @@ export function Hero() {
     startDelay: 600,
   });
 
-  const [version] = useState("3.1.4");
+  const version = useGithubVersion();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
