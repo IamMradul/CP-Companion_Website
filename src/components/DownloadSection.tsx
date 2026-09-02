@@ -15,7 +15,7 @@ const FUN_FACTS = [
 
 export function DownloadSection() {
   const version = useGithubVersion();
-  const downloadUrl = `/cp-companion_${version}.0_x64.msix`;
+  const downloadUrl = `/cp-companion_${version}_x64_en-US.msi`;
   const macDownloadUrl = `/cp-companion_${version}_universal.dmg`;
   const [fileSize] = useState("~5 MB");
   const [showMacFix, setShowMacFix] = useState(false);
@@ -45,7 +45,34 @@ export function DownloadSection() {
     }
   }, [showMacFix]);
 
-  const handleDownload = () => {
+  const handleDownload = async (e: React.MouseEvent<HTMLAnchorElement>, platform: 'windows' | 'mac') => {
+    e.preventDefault();
+    
+    const fileName = platform === 'windows' 
+      ? `cp-companion_${version}_x64_en-US.msi` 
+      : `cp-companion_${version}_universal.dmg`;
+      
+    const localUrl = platform === 'windows' ? downloadUrl : macDownloadUrl;
+    let finalUrl = localUrl;
+
+    try {
+      const response = await fetch(localUrl, { method: 'HEAD' });
+      if (!response.ok) {
+        finalUrl = `https://github.com/IamMradul/CP-Companion/releases/download/v${version}/${fileName}`;
+      }
+    } catch (error) {
+      finalUrl = `https://github.com/IamMradul/CP-Companion/releases/download/v${version}/${fileName}`;
+    }
+
+    const link = document.createElement('a');
+    link.href = finalUrl;
+    if (finalUrl === localUrl) {
+      link.download = fileName;
+    }
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
     setShowThankYou(true);
   };
 
@@ -128,8 +155,7 @@ export function DownloadSection() {
               <div className="pt-4 border-t border-white/20 flex flex-col sm:flex-row items-center gap-3">
                 <a
                   href={downloadUrl}
-                  download={`cp-companion_${version}.0_x64.msix`}
-                  onClick={handleDownload}
+                  onClick={(e) => handleDownload(e, 'windows')}
                   className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white text-black hover:bg-slate-200 font-semibold text-sm shadow-xl transition-all"
                 >
                   <Download className="w-4 h-4" />
@@ -194,8 +220,7 @@ export function DownloadSection() {
               <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
                 <a
                   href={macDownloadUrl}
-                  download={`cp-companion_${version}_aarch64.dmg`}
-                  onClick={handleDownload}
+                  onClick={(e) => handleDownload(e, 'mac')}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-black text-white hover:bg-black/80 font-bold text-sm transition-colors shadow-md"
                 >
                   <Download className="w-4 h-4" />
