@@ -22,7 +22,7 @@ export function Footer() {
   return (
     <footer className="relative z-10 bg-[#EAEAEA] border-t border-black/10 pt-16 pb-12 text-black/80 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
@@ -38,7 +38,7 @@ export function Footer() {
             </div>
 
             <p className="text-black/75 text-xs leading-relaxed max-w-sm font-body">
-              Lightweight, cross-platform desktop application designed for Competitive Programming enthusiasts. Real-time contest tracking with a Rainmeter-style desktop widget.
+              Lightweight, cross-platform desktop application designed for Competitive Programming enthusiasts. Real-time contest tracking with a borderless desktop widget.
             </p>
 
             <div className="flex flex-wrap items-center gap-2 font-mono text-[11px]">
@@ -96,7 +96,7 @@ export function Footer() {
                     <span>Mradul Gupta</span>
                   </a>
                   <a
-                    href="https://x.com/MardulGupta"
+                    href="https://x.com/Mradul42"
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-1 font-medium text-black/60 hover:text-black transition-colors"

@@ -115,7 +115,7 @@ export function InteractiveDemo() {
             Experience CP Companion Directly in Your Browser
           </h2>
           <p className="text-black/70 text-sm sm:text-base font-body">
-            Toggle between the Rainmeter-style desktop widget, list view, and grid calendar.
+            Toggle between the borderless desktop widget, list view, and grid calendar.
           </p>
         </motion.div>
 
@@ -150,7 +150,7 @@ export function InteractiveDemo() {
                   }`}
               >
                 <Layers className="w-3.5 h-3.5" />
-                <span>Rainmeter Widget</span>
+                <span>Desktop Widget</span>
               </button>
               <button
                 onClick={() => setActiveTab('list')}
@@ -175,12 +175,12 @@ export function InteractiveDemo() {
             </div>
           </div>
 
-          {/* Tab 1: Rainmeter Desktop Widget Simulation */}
+          {/* Tab 1: Borderless Desktop Widget Simulation */}
           {activeTab === 'widget' && (
             <div className="p-5 sm:p-8 md:p-12 bg-[#F8F8F6] flex flex-col items-center justify-center min-h-[380px] sm:min-h-[420px] relative">
               <div className="text-center space-y-2 mb-6 sm:mb-8 relative z-10 max-w-full">
                 <span className="inline-block text-[10px] sm:text-xs font-mono text-black uppercase tracking-wider sm:tracking-widest bg-black/5 border border-black/10 px-3 py-1.5 rounded-xl sm:rounded-full font-semibold leading-relaxed">
-                  Rainmeter-Style Borderless Overlay
+                  Floating Borderless Overlay
                 </span>
                 <p className="text-xs text-black/60 font-body px-2">
                   Pins seamlessly to your desktop corner. Drag anywhere, zero window chrome, live countdown.

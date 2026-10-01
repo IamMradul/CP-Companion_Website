@@ -12,7 +12,7 @@ export function Features() {
     {
       icon: Clock,
       color: 'from-blue-500 to-cyan-600',
-      title: 'Rainmeter-Style Desktop Overlay',
+      title: 'Floating Desktop Overlay',
       description: 'Sticky, borderless desktop widget with a 1-second live countdown timer. Constantly visible on your desktop without cluttering your workflow.'
     },
     {

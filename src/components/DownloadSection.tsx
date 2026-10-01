@@ -47,11 +47,11 @@ export function DownloadSection() {
 
   const handleDownload = async (e: React.MouseEvent<HTMLAnchorElement>, platform: 'windows' | 'mac') => {
     e.preventDefault();
-    
-    const fileName = platform === 'windows' 
-      ? `cp-companion_${version}_x64_en-US.msi` 
+
+    const fileName = platform === 'windows'
+      ? `cp-companion_${version}_x64_en-US.msi`
       : `cp-companion_${version}_universal.dmg`;
-      
+
     const localUrl = platform === 'windows' ? downloadUrl : macDownloadUrl;
     let finalUrl = localUrl;
 
@@ -72,7 +72,7 @@ export function DownloadSection() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
+
     setShowThankYou(true);
   };
 
@@ -113,9 +113,6 @@ export function DownloadSection() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="bg-black text-white p-8 sm:p-10 rounded-3xl border border-black shadow-2xl flex flex-col justify-between space-y-6 relative group shrink-0"
             >
-              <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-white text-black text-[11px] font-semibold tracking-wide uppercase font-mono shadow-md">
-                Recommended
-              </div>
 
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
@@ -129,7 +126,7 @@ export function DownloadSection() {
                 </div>
 
                 <p className="text-white/80 text-sm leading-relaxed font-body">
-                  Includes the full Tauri v2 executable, system tray integration, Rainmeter desktop widget overlay, and SQLite local storage engine.
+                  Includes the full Tauri v2 executable, system tray integration, borderless desktop widget overlay, and SQLite local storage engine.
                 </p>
 
                 <div className="grid grid-cols-2 gap-2 pt-2 text-xs font-mono text-white/80">
@@ -143,7 +140,7 @@ export function DownloadSection() {
                   </div>
                   <div className="flex items-center gap-2">
                     <DotIcon className="w-3.5 h-3.5 text-white" />
-                    <span>Rainmeter Desktop Widget</span>
+                    <span>Borderless Desktop Widget</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <DotIcon className="w-3.5 h-3.5 text-white" />

@@ -74,7 +74,7 @@ export function FollowPopup() {
           <div className="flex items-center justify-between bg-[#F4F4F0] p-2 rounded-xl border border-black/10">
             <div className="flex items-center gap-2">
               <img
-                src="https://github.com/IamMradul.png"
+                src="https://pbs.twimg.com/profile_images/2103050827955068928/Gwn1vnGf_400x400.jpg"
                 alt="Mradul Gupta"
                 className="w-7 h-7 rounded-full border border-black/20 object-cover shrink-0"
               />
@@ -82,7 +82,7 @@ export function FollowPopup() {
             </div>
             <div className="flex items-center gap-1.5">
               <a
-                href="https://x.com/MardulGupta"
+                href="https://x.com/Mradul42"
                 target="_blank"
                 rel="noreferrer"
                 className="p-1 rounded-md bg-black text-white hover:bg-black/80 transition-colors"

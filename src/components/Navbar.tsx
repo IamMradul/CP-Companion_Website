@@ -83,7 +83,7 @@ export function Navbar() {
 
       {/* Mobile Overlay (z-index: 39) */}
       <div
-        className={`fixed inset-0 bg-white/95 backdrop-blur-md z-39 md:hidden flex flex-col justify-center px-8 gap-6 transition-opacity duration-300 ${isMenuOpen
+        className={`fixed inset-0 bg-white/95 backdrop-blur-md z-[39] md:hidden flex flex-col justify-center px-8 gap-6 transition-opacity duration-300 ${isMenuOpen
           ? 'opacity-100 pointer-events-auto'
           : 'opacity-0 pointer-events-none'
           }`}

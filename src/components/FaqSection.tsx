@@ -17,7 +17,7 @@ const FAQS: FaqItem[] = [
     answer: 'CP Companion natively tracks Codeforces, LeetCode, AtCoder, CodeChef, GeeksforGeeks, HackerRank, and 50+ platforms dynamically. You can search, filter, select, and save your preferred platforms in settings.'
   },
   {
-    question: 'How does the Rainmeter-style desktop widget work?',
+    question: 'How does the borderless desktop widget work?',
     answer: 'The desktop widget operates as an independent borderless Tauri Webview window (`widget`). It features a live 1-second countdown timer to your next upcoming contest and polls your local machine SQLite database every 5 seconds to stay perfectly synced without consuming CPU or network bandwidth.'
   },
   {

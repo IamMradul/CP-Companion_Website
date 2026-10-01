@@ -1,4 +1,4 @@
-import { Key, CheckCircle2, PlayCircle, ArrowRight } from 'lucide-react';
+import { Key, CheckCircle2, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function SetupGuide() {
@@ -6,7 +6,7 @@ export function SetupGuide() {
     {
       number: '01',
       title: 'Download & Install',
-      description: 'Download the latest CP Companion installer and run it on your Windows machine. It installs in seconds and takes minimal space.',
+      description: 'Download the latest CP Companion installer and run it on your machine. It installs in seconds and takes minimal space.',
       link: '#download',
       linkText: 'Download CP Companion'
     },
@@ -31,7 +31,7 @@ export function SetupGuide() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -94,30 +94,6 @@ export function SetupGuide() {
             </motion.div>
           ))}
         </div>
-
-        {/* Video Note */}
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 max-w-2xl mx-auto text-center bg-white p-5 rounded-2xl border border-black/15 shadow-sm flex flex-col sm:flex-row items-center justify-center gap-3"
-        >
-          <PlayCircle className="w-5 h-5 text-black shrink-0" />
-          <span className="text-xs text-black/80 font-body">
-            Note: The{' '}
-            <a
-              href="https://www.youtube.com/watch?v=ilP9Ci6ICvM"
-              target="_blank"
-              rel="noreferrer"
-              className="text-black underline font-bold hover:opacity-60"
-            >
-              YouTube Video Guide
-            </a>
-            {' '}shows the older v2 setup. V3 is even easier with zero API keys required!
-          </span>
-        </motion.div>
-
       </div>
     </section>
   );

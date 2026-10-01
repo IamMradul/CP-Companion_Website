@@ -120,39 +120,39 @@ export function Hero() {
               className="w-full sm:w-auto inline-flex items-center justify-center bg-black text-white rounded-full text-xs sm:text-sm md:text-base px-5 py-2.5 sm:py-3 hover:bg-neutral-800 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.98] font-medium gap-2"
             >
               <Download className="w-4 h-4 shrink-0 text-white" />
-              <span>Download Windows MSI (v{version})</span>
+              <span>Download CP Companion (v{version})</span>
             </a>
 
             {/* Secondary Action Pills */}
             <a
               href="#demo"
-              className="inline-flex items-center justify-center bg-white text-black border border-black/15 rounded-full text-xs sm:text-sm px-3.5 sm:px-4 py-2 hover:bg-black hover:text-white hover:border-black transition-all duration-200 cursor-pointer font-medium shadow-xs hover:shadow-md gap-1.5"
+              className="hidden sm:inline-flex items-center justify-center bg-white text-black border border-black/15 rounded-full text-xs sm:text-sm px-3.5 sm:px-4 py-2 hover:bg-black hover:text-white hover:border-black transition-all duration-200 cursor-pointer font-medium shadow-xs hover:shadow-md gap-1.5"
             >
-              <Monitor className="w-3.5 h-3.5 shrink-0" />
+              <Monitor className="w-3 h-3 shrink-0" />
               <span>Try Interactive Demo</span>
             </a>
 
             <a
               href="#architecture"
-              className="inline-flex items-center justify-center bg-white text-black border border-black/15 rounded-full text-xs sm:text-sm px-3.5 sm:px-4 py-2 hover:bg-black hover:text-white hover:border-black transition-all duration-200 cursor-pointer font-medium shadow-xs hover:shadow-md gap-1.5"
+              className="hidden sm:inline-flex items-center justify-center bg-white text-black border border-black/15 rounded-full text-xs sm:text-sm px-3.5 sm:px-4 py-2 hover:bg-black hover:text-white hover:border-black transition-all duration-200 cursor-pointer font-medium shadow-xs hover:shadow-md gap-1.5"
             >
-              <Cpu className="w-3.5 h-3.5 shrink-0" />
+              <Cpu className="w-3 h-3 shrink-0" />
               <span>View Architecture</span>
             </a>
 
             <a
               href="#setup"
-              className="inline-flex items-center justify-center bg-white text-black border border-black/15 rounded-full text-xs sm:text-sm px-3.5 sm:px-4 py-2 hover:bg-black hover:text-white hover:border-black transition-all duration-200 cursor-pointer font-medium shadow-xs hover:shadow-md gap-1.5"
+              className="hidden sm:inline-flex items-center justify-center bg-white text-black border border-black/15 rounded-full text-xs sm:text-sm px-3.5 sm:px-4 py-2 hover:bg-black hover:text-white hover:border-black transition-all duration-200 cursor-pointer font-medium shadow-xs hover:shadow-md gap-1.5"
             >
-              <Key className="w-3.5 h-3.5 shrink-0" />
+              <Key className="w-3 h-3 shrink-0" />
               <span>3-Min Setup Guide</span>
             </a>
 
             <a
               href="#features"
-              className="inline-flex items-center justify-center bg-white text-black border border-black/15 rounded-full text-xs sm:text-sm px-3.5 sm:px-4 py-1.5 sm:py-2 hover:bg-black hover:text-white hover:border-black transition-all duration-200 cursor-pointer font-medium shadow-xs hover:shadow-md gap-1.5"
+              className="hidden sm:inline-flex items-center justify-center bg-white text-black border border-black/15 rounded-full text-xs sm:text-sm px-3.5 sm:px-4 py-1.5 sm:py-2 hover:bg-black hover:text-white hover:border-black transition-all duration-200 cursor-pointer font-medium shadow-xs hover:shadow-md gap-1.5"
             >
-              <Sparkles className="w-3.5 h-3.5 shrink-0" />
+              <Sparkles className="w-3 h-3 shrink-0" />
               <span>Browse Features</span>
             </a>
           </div>
